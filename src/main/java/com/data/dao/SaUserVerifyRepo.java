@@ -17,4 +17,6 @@ interface SaUserVerifyRepo extends CrudRepository<SaUserVerify, Integer> {
 	public List<SaUserVerify> findAllByOrderByUserIdDesc();
 	
 	public List<SaUserVerify> findByTokenAndStatus(String token, SaUserVerifyStatus status);
+	
+	public List<SaUserVerify> findByTokenAndStatusIn(String token, List<SaUserVerifyStatus> statusList);
 }

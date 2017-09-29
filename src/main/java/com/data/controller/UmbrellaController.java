@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -112,6 +113,27 @@ public class UmbrellaController {
 			String token = json.get("token");
 			SaUserVerifyStatus status = SaUserVerifyStatus.valueOf(json.get("status"));
 			List<SaUserVerify> list = saUserVerifyDao.getAllByTokenAndStatus(token,status);
+			return SaUserVerify.toString(list);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return "Error creating the user: " + ex.toString();
+		}
+	}
+	
+	@RequestMapping(value = "/getByTokenAndStatusIn", method = RequestMethod.POST,consumes = "application/json")
+	@ResponseBody
+	public String getByTokenAndStatusIn(@RequestBody Map<String, Object> json) {
+		try {
+			String token = (String)json.get("token");
+			
+			List<String> statusList = (List)json.get("statuses");
+			List<SaUserVerifyStatus> statusEnumList = new ArrayList<>();
+			
+			for (String map : statusList) {
+				statusEnumList.add(SaUserVerifyStatus.valueOf(map));
+			}
+			
+			List<SaUserVerify> list = saUserVerifyDao.getByTokenAndStatusIn(token,statusEnumList );
 			return SaUserVerify.toString(list);
 		} catch (Exception ex) {
 			ex.printStackTrace();

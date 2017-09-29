@@ -38,4 +38,8 @@ public class SaUserVerifyDao {
 		return saUserVerifyRepo.findByTokenAndStatus(token,status);
 	}
 	
+	public List<SaUserVerify> getByTokenAndStatusIn(String token, List<SaUserVerifyStatus> statusList) {
+		return saUserVerifyRepo.findByTokenAndStatusIn(token,statusList);
+	}
+	
 }
