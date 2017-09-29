@@ -91,4 +91,31 @@ public class UmbrellaController {
 			return "Error creating the user: " + ex.toString();
 		}
 	}
+	
+	
+	@RequestMapping(value = "/getAllByOrderByUserIdDesc", method = RequestMethod.POST,consumes = "application/json")
+	@ResponseBody
+	public String getAllByOrderByUserIdDesc() {
+		try {
+			List<SaUserVerify> list = saUserVerifyDao.getAllByOrderByUserIdDesc();
+			return SaUserVerify.toString(list);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return "Error creating the user: " + ex.toString();
+		}
+	}
+	
+	@RequestMapping(value = "/getAllByTokenAndStatus", method = RequestMethod.POST,consumes = "application/json")
+	@ResponseBody
+	public String getAllByTokenAndStatus(@RequestBody Map<String, String> json) {
+		try {
+			String token = json.get("token");
+			SaUserVerifyStatus status = SaUserVerifyStatus.valueOf(json.get("status"));
+			List<SaUserVerify> list = saUserVerifyDao.getAllByTokenAndStatus(token,status);
+			return SaUserVerify.toString(list);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return "Error creating the user: " + ex.toString();
+		}
+	}
 }

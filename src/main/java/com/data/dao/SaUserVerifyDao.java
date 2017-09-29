@@ -30,4 +30,12 @@ public class SaUserVerifyDao {
 		return saUserVerifyRepo.findByStatusList(statusList);
 	}
 	
+	public List<SaUserVerify> getAllByOrderByUserIdDesc() {
+		return saUserVerifyRepo.findAllByOrderByUserIdDesc();
+	}
+	
+	public List<SaUserVerify> getAllByTokenAndStatus(String token, SaUserVerifyStatus status) {
+		return saUserVerifyRepo.findByTokenAndStatus(token,status);
+	}
+	
 }

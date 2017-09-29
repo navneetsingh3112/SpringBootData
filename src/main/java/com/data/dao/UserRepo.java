@@ -8,4 +8,5 @@ import com.data.entity.User;
 @Transactional
 interface UserRepo extends CrudRepository<User, Integer> {
 	public User findByEmail(String email);
+	public User findAllByOrderByEmailDesc(String email);
 }
