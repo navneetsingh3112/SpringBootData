@@ -12,5 +12,5 @@ interface SaUserVerifyRepo extends CrudRepository<SaUserVerify, Integer> {
 	public List<SaUserVerify> findByStatus(SaUserVerifyStatus status);
 	
 	@Query(value="SELECT * FROM sa_user_verify where status in ?1",nativeQuery=true)
-	public List<SaUserVerify> findByStatusList(List<SaUserVerifyStatus> statusList);
+	public List<SaUserVerify> findByStatusList(List<String> statusList);
 }

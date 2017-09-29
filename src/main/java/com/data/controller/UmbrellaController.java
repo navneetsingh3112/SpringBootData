@@ -80,9 +80,9 @@ public class UmbrellaController {
 	@ResponseBody
 	public String getByStatusList(@RequestBody List<Map<String, String>> json) {
 		try {
-			List<SaUserVerifyStatus> statusList = new ArrayList<>();
+			List<String> statusList = new ArrayList<>();
 			for (Map<String, String> map : json) {
-				statusList.add(SaUserVerifyStatus.valueOf(map.get("status")));
+				statusList.add(SaUserVerifyStatus.valueOf(map.get("status")).toString());
 			}
 			List<SaUserVerify> list = saUserVerifyDao.findByStatusList(statusList);
 			return SaUserVerify.toString(list);

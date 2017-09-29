@@ -26,7 +26,7 @@ public class SaUserVerifyDao {
 		return saUserVerifyRepo.findByStatus(status);
 	}
 	
-	public List<SaUserVerify> findByStatusList(List<SaUserVerifyStatus> statusList) {
+	public List<SaUserVerify> findByStatusList(List<String> statusList) {
 		return saUserVerifyRepo.findByStatusList(statusList);
 	}
 	
