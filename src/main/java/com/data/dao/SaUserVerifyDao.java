@@ -26,6 +26,10 @@ public class SaUserVerifyDao {
 		return saUserVerifyRepo.findByStatus(status);
 	}
 	
+	public List<SaUserVerify> findByToken(String token) {
+		return saUserVerifyRepo.findByToken(token);
+	}
+
 	public List<SaUserVerify> findByStatusList(List<String> statusList) {
 		return saUserVerifyRepo.findByStatusList(statusList);
 	}

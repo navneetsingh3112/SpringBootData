@@ -76,6 +76,17 @@ public class UmbrellaController {
 		}
 	}
 	
+	@RequestMapping(value = "/getByToken", method = RequestMethod.POST,consumes = "application/json")
+	@ResponseBody
+	public String getByToken(@RequestBody Map<String, String> json) {
+		try {
+			List<SaUserVerify> list = saUserVerifyDao.findByToken(json.get("token"));
+			return SaUserVerify.toString(list);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return "Error creating the user: " + ex.toString();
+		}
+	}
 	
 	@RequestMapping(value = "/getByStatusList", method = RequestMethod.POST,consumes = "application/json")
 	@ResponseBody
